@@ -1,0 +1,56 @@
+.image-card {
+  height: 410px !important;
+  overflow: hidden;
+}
+
+.upload-img {
+  background-repeat: no-repeat;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+input[type=file]:focus {
+  outline: none !important;
+  border: none;
+  border-color: #EFC81A;
+  box-shadow: 0 0 5px #EFC81A !important;
+}
+
+input[type=text]:focus {
+  outline: none !important;
+  border: none;
+  border-color: #EFC81A;
+  box-shadow: 0 0 5px #EFC81A !important;
+}
+input[type=email]:focus {
+  outline: none !important;
+  border: none;
+  border-color: #EFC81A;
+  box-shadow: 0 0 5px #EFC81A !important;
+}
+input[type=password]:focus {
+  outline: none !important;
+  border: none;
+  border-color: #EFC81A;
+  box-shadow: 0 0 5px #EFC81A !important;
+}
+
+textarea:focus { 
+  outline: none !important;
+  border: none;
+  border-color: #EFC81A;
+  box-shadow: 0 0 5px #EFC81A !important;
+}
+
+select:focus {
+  outline: none !important;
+  border: none;
+  border-color: #EFC81A;
+  box-shadow: 0 0 5px #EFC81A !important;
+}
+
+.btn-yellow {
+  background-color: #EFC81A !important;
+  color: #FFFFFF !important;
+  border: none;
+}

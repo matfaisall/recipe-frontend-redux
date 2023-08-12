@@ -19,20 +19,27 @@ const Login = () => {
             <hr />
             <Card className="border-0">
               <Form>
-                <p className="mb-0">Email</p>
-                <Form.Control
-                  className="mb-3"
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  placeholder="Enter email address"
-                />
-                <p className="mb-0">Password</p>
-                <Form.Control
-                  className="mb-3"
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  placeholder="Password"
-                />
+                <p className="mb-2">Email</p>
+                <Form.Group className="mb-3">
+                  <Form.Control
+                    type="email"
+                    name="email"
+                    id="email"
+                    className="py-3 bg-body-tertiary"
+                    placeholder="Enter Email Address"
+                  />
+                </Form.Group>
+
+                <p className="mb-2">Password</p>
+                <Form.Group className="mb-3">
+                  <Form.Control
+                    type="password"
+                    name="password"
+                    id="password"
+                    className="py-3 bg-body-tertiary"
+                    placeholder="Password"
+                  />
+                </Form.Group>
 
                 {["checkbox"].map((type) => (
                   <div key={`default-${type}`} className="mb-3">
@@ -44,7 +51,7 @@ const Login = () => {
                   </div>
                 ))}
                 <Button
-                  className="d-block w-100 border-0"
+                  className="d-block w-100 py-3 border-0"
                   style={{ backgroundColor: "#EFC81A" }}
                 >
                   Submit
