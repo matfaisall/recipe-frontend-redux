@@ -13,7 +13,7 @@ const Register = () => {
               <h4 className="mb-3 fw-bold">Recipe...</h4>
               <h4 className="mb-3 fw-bold">Let's Get Started !</h4>
             </div>
-            <p class="text-body-secondary text-center mb-4">
+            <p className="text-body-secondary text-center mb-4">
               Create new account to access all features
             </p>
             <hr />

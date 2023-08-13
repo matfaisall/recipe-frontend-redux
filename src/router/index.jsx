@@ -11,6 +11,8 @@ import Login from "../views/Login.jsx";
 import Register from "../views/Register.jsx";
 import AddRecipe from "../views/AddRecipe.jsx";
 import EditRecipe from "../views/EditRecipe.jsx";
+import SearchRecipe from "../views/SearchRecipe.jsx";
+import DetailRecipe from "../views/DetailRecipe.jsx";
 
 const Router = () => {
   // const PrivateRoute = () => {
@@ -31,6 +33,8 @@ const Router = () => {
         <Route path="/auth/register" element={<Register />} />
         <Route path="/add-recipe" element={<AddRecipe />} />
         <Route path="/edit-recipe" element={<EditRecipe />} />
+        <Route path="/search-recipe" element={<SearchRecipe />} />
+        <Route path="/detail-recipe" element={<DetailRecipe />} />
       </Routes>
     </BrowserRouter>
   );
