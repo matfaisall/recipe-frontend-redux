@@ -20,29 +20,30 @@ const Login = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    dispatch(login(form, navigate));
     // setLoading(true);
 
-    const handleSuccess = (data) => {
-      localStorage.setItem("token", data.data.token);
-      localStorage.setItem("id", data.data.id);
-      // console.log("data Login: ", data.data.token);
-      // console.log("data Login id: ", data.data.id);
-    };
+    // const handleSuccess = (data) => {
+    //   localStorage.setItem("token", data.data.token);
+    //   localStorage.setItem("id", data.data.id);
+    //   console.log("data Login: ", data.data.token);
+    //   console.log("data Login id: ", data.data.id);
+    // };
 
-    if (form.email === "" || form.password === "") {
-      alert("form harus diisi");
-      // bisa di costom ulang
-    } else {
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Login Success",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      dispatch(login(form, handleSuccess));
-      navigate("/");
-    }
+    // if (form.email === "" || form.password === "") {
+    //   alert("form harus diisi");
+    //   // bisa di costom ulang
+    // } else {
+    //   Swal.fire({
+    //     position: "top-end",
+    //     icon: "success",
+    //     title: "Login Success",
+    //     showConfirmButton: false,
+    //     timer: 1500,
+    //   });
+    //   dispatch(login(form, handleSuccess));
+    //   navigate("/");
+    // }
   };
 
   return (
