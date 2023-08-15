@@ -35,7 +35,7 @@ const NavbarGuest = () => {
             </Nav>
             <Nav>
               <Link
-                to="/list-recipe"
+                to="/search-recipe"
                 className="link text-black fw-medium"
                 style={{ textDecoration: "none" }}
               >

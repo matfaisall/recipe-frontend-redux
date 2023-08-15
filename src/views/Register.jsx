@@ -1,9 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import register from "../redux/action/register";
 
 const Register = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch(register(form, navigate));
+    console.log(form);
+  };
+
   return (
     <>
       <Container className="mt-5">
@@ -18,13 +36,14 @@ const Register = () => {
             </p>
             <hr />
             <Card className="border-0">
-              <Form>
+              <Form onSubmit={(e) => onSubmit(e)}>
                 <p className="mb-2">Name</p>
                 <Form.Group className="mb-3">
                   <Form.Control
                     type="text"
                     name="name"
                     id="name"
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
                     className="py-3 bg-body-tertiary"
                     placeholder="Name"
                   />
@@ -35,6 +54,9 @@ const Register = () => {
                     type="email"
                     name="email"
                     id="email"
+                    onChange={(e) =>
+                      setForm({ ...form, email: e.target.value })
+                    }
                     className="py-3 bg-body-tertiary"
                     placeholder="Enter Email Address"
                   />
@@ -46,21 +68,29 @@ const Register = () => {
                     type="password"
                     name="password"
                     id="password"
+                    onChange={(e) =>
+                      setForm({ ...form, password: e.target.value })
+                    }
                     className="py-3 bg-body-tertiary"
                     placeholder="Password"
                   />
                 </Form.Group>
 
-                {["checkbox"].map((type) => (
-                  <div key={`default-${type}`} className="mb-3">
-                    <Form.Check // prettier-ignore
-                      type={type}
-                      id={`default-${type}`}
-                      label={`default ${type}`}
-                    />
-                  </div>
-                ))}
+                <div className="form-check mb-3">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    id="flexCheckDefault"
+                  />
+                  <label
+                    className="form-chack-label"
+                    htmlFor="flexCheckDefault"
+                  >
+                    I agree of term conditions
+                  </label>
+                </div>
                 <Button
+                  type="submit"
                   className="d-block w-100 border-0 py-3"
                   style={{ backgroundColor: "#EFC81A" }}
                 >

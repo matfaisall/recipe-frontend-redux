@@ -16,12 +16,11 @@ export const login = (form, navigate) => async (dispatch) => {
     localStorage.setItem("name", result.data.data.name);
     localStorage.setItem("email", result.data.data.email);
     localStorage.setItem("photo", result.data.data.photo);
-    // console.log(result.data.data);
 
     Swal.fire({
       position: "top-end",
       icon: "success",
-      title: "Your work has been saved",
+      title: "You are successfully logged in.",
       showConfirmButton: false,
       timer: 1500,
     });
@@ -37,15 +36,4 @@ export const login = (form, navigate) => async (dispatch) => {
       payload: err.response.data.message,
     });
   }
-  // type: "LOGIN",
-  // payload: new Promise((resolve, reject) => {
-  //   axios
-  //     .post(`${import.meta.env.VITE_BASE_URL}/auth/login`, form)
-  //     .then((response) => {
-  //       console.log("ini response login", response.data);
-  //       handleSuccess(response.data);
-  //       resolve(response);
-  //     })
-  //     .catch((error) => reject(error));
-  // }),
 };

@@ -10,12 +10,14 @@ import { useSelector } from "react-redux";
 import imageAvata from "../assets/images/avatar.jpg";
 
 const NavigationBar = () => {
+  const navigate = useNavigate();
   const token = localStorage?.getItem("token");
   const decode = jwt_decode(token);
 
   const handleLogout = () => {
     localStorage.clear();
-    Navigate("/auth/register");
+    // navigate("/");
+    Navigate("/");
   };
 
   return (
@@ -43,7 +45,7 @@ const NavigationBar = () => {
               </Nav>
               <Nav>
                 <Link
-                  to="/list-recipe"
+                  to="/search-recipe"
                   className="link text-black fw-medium"
                   style={{ textDecoration: "none" }}
                 >
@@ -66,6 +68,7 @@ const NavigationBar = () => {
                 <div className="d-flex flex-column ms-4">
                   <h6 className="mb-0">
                     <Link
+                      to="/list-recipe"
                       className="text-black"
                       style={{ textDecoration: "none" }}
                     >

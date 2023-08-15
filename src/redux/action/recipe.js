@@ -53,7 +53,7 @@ export const postMenu = (data, navigate) => async (dispatch) => {
     Swal.fire({
       position: "top-end",
       icon: "success",
-      title: "Your work has been saved",
+      title: "Recipe added successfully.",
       showConfirmButton: false,
       timer: 1500,
     });
@@ -69,8 +69,15 @@ export const updateMenu = (data, id, navigate) => async (dispatch) => {
     dispatch({ type: "PUT_MENU_PENDING" });
     const result = await axios.put(url + `/recipe/${id}`, data, { headers });
     console.log(result);
-    navigate("/list-recipe");
     dispatch({ payload: result.data.data, type: "PUT_MENU_SUCCESS" });
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Recipe updated successfully.",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    navigate("/list-recipe");
   } catch (err) {
     console.log("error");
     dispatch({ payload: err.response.data.message, type: "PUT_MENU_FAILED" });
