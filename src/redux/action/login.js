@@ -13,6 +13,10 @@ export const login = (form, navigate) => async (dispatch) => {
 
     // console.log(result.data.data);
     localStorage.setItem("token", result.data.data.token);
+    localStorage.setItem("name", result.data.data.name);
+    localStorage.setItem("email", result.data.data.email);
+    localStorage.setItem("photo", result.data.data.photo);
+    // console.log(result.data.data);
 
     Swal.fire({
       position: "top-end",

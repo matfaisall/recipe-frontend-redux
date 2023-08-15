@@ -17,7 +17,7 @@ import { getMenu, searchMenu } from "../redux/action/recipe";
 
 // console.log(data);
 
-import Navbar from "../components/Navbar";
+import Navbar from "../components/NavigationBar";
 import Footer from "../components/Footer";
 import imageTest from "../assets/images/popular-recipe5.jpg";
 import imageProfileTest from "../assets/images/avatar.jpg";

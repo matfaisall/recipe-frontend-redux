@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Card, Button } from "react-bootstrap";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/NavigationBar";
 
 import StyleAddRecipe from "./styles/AddRecipe.module.css";
 import { useNavigate } from "react-router-dom";

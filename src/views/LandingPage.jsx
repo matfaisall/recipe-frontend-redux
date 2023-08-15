@@ -3,7 +3,8 @@ import React from "react";
 // import data recipe popular
 import popularRecipeData from "../assets/dataRecipePopular/PopularRecipeData";
 
-import Navbar from "../components/Navbar";
+import Navbar from "../components/NavigationBar";
+import NavbarGuest from "../components/NavbarGuest";
 import SearchBar from "../components/SearchBar";
 import Footer from "../components/Footer";
 import CardPopularRecipe from "../components/CardPopularRecipe";
@@ -15,10 +16,23 @@ import StyleLanding from "./styles/LandingPage.module.css";
 import imageHero from "../assets/images/menu-hero.jpg";
 
 const LandingPage = () => {
+  const token = localStorage.getItem("token");
+  console.log(token);
+
+  const navbarDisplay = () => {
+    if (token) {
+      return <Navbar />;
+    } else {
+      return <NavbarGuest />;
+    }
+  };
+
   return (
     <>
       <span className={`${StyleLanding["bg-yellow"]}`}></span>
-      <Navbar />
+
+      {navbarDisplay()}
+
       {/* Section Header */}
       <section>
         <Container>
