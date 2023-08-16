@@ -62,8 +62,23 @@ const Router = () => {
             </AuthChacker>
           }
         />
-        <Route path="/search-recipe" element={<SearchRecipe />} />
-        <Route path="/detail-recipe/:menuId" element={<DetailRecipe />} />
+        <Route
+          path="/search-recipe"
+          element={
+            <AuthChacker>
+              {" "}
+              <SearchRecipe />
+            </AuthChacker>
+          }
+        />
+        <Route
+          path="/detail-recipe/:menuId"
+          element={
+            <AuthChacker>
+              <DetailRecipe />
+            </AuthChacker>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
