@@ -16,6 +16,7 @@ import AddRecipe from "../views/AddRecipe.jsx";
 import EditRecipe from "../views/EditRecipe.jsx";
 import SearchRecipe from "../views/SearchRecipe.jsx";
 import DetailRecipe from "../views/DetailRecipe.jsx";
+import NotFound from "../views/NotFound.jsx";
 
 const Router = () => {
   const { menuId } = useParams();
@@ -79,6 +80,7 @@ const Router = () => {
             </AuthChacker>
           }
         />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

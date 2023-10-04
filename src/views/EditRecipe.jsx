@@ -24,6 +24,10 @@ const EditRecipe = () => {
     image_url: "",
   });
 
+  console.log("ini data", data);
+
+  console.log("ini inputdata", inputData);
+
   useEffect(() => {
     console.log(menuId);
     dispatch(getMenuDetail(menuId));
