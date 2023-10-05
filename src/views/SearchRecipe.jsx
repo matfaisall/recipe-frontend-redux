@@ -13,7 +13,7 @@ import {
 
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getMenu, searchMenu } from "../redux/action/recipe";
+import { searchMenu } from "../redux/action/recipe";
 
 // console.log(data);
 
@@ -26,20 +26,29 @@ const SearchRecipe = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const menu = useSelector((state) => state);
-  const { data, errorMessage, isLoading, isError } = menu.menu;
+  const menu = useSelector((state) => state.menu);
+  // console.log("ini menu", menu);
+  const { data, errorMessage, isLoading, isError } = menu;
+
+  console.log("ini data", data?.data);
 
   const [search, setSearch] = useState("");
-  console.log(search);
+  const [sort, setSort] = useState("ASC");
+  // const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1);
 
-  // useEffect(() => {
-  //   dispatch(getMenu());
-  // }, []);
+  console.log("ini data", data?.pagination);
+
+  const sortHandler = () => {
+    const newSortOrder = sort === "ASC" ? "DESC" : "ASC";
+    setSort(newSortOrder);
+  };
+
+  // console.log(sort);
 
   useEffect(() => {
-    dispatch(searchMenu(search));
-    search == "" && dispatch(getMenu());
-  }, [search]);
+    dispatch(searchMenu(search, sort, page));
+  }, [search, sort, page]);
 
   return (
     <>
@@ -75,13 +84,15 @@ const SearchRecipe = () => {
               <Button
                 type="button"
                 className="btn btn-sm btn-warning px-3 text-white"
+                onClick={sortHandler}
               >
-                New
+                Sort By
               </Button>
               <Button
                 variant="outline-warning"
                 type="button"
                 className="btn btn-sm px-3"
+                disabled
               >
                 Popular
               </Button>
@@ -89,6 +100,7 @@ const SearchRecipe = () => {
                 variant="outline-warning"
                 type="button"
                 className="btn btn-sm px-3"
+                disabled
               >
                 Vegetarian
               </Button>
@@ -96,6 +108,7 @@ const SearchRecipe = () => {
                 variant="outline-warning"
                 type="button"
                 className="btn btn-sm px-3"
+                disabled
               >
                 Breakfast
               </Button>
@@ -106,9 +119,9 @@ const SearchRecipe = () => {
 
       <section>
         <Container>
-          {data?.map((item, index) => {
+          {data?.data?.map((item, index) => {
             return (
-              <main>
+              <main key={item.id}>
                 <Row className="text-center text-md-start">
                   <Col md="7">
                     <Card className="mb-3 border-0" style={{ maxWidth: 700 }}>
@@ -124,7 +137,7 @@ const SearchRecipe = () => {
                           <Card className="border-0">
                             <h5 className="card-title mt-3 mt-md-0">
                               <Link
-                                to="/"
+                                to={`/detail-recipe/${item.id}`}
                                 className="text-black"
                                 style={{ textDecoration: "none" }}
                               >
@@ -137,8 +150,9 @@ const SearchRecipe = () => {
                               className="btn btn-sm me-auto text-white"
                               style={{ backgroundColor: "#EFC81A" }}
                             >
-                              <span>10 Likes</span> - <span>12 Comment</span> -
-                              <span> 3 Bookmark</span>
+                              <span>{item.like_count} Likes</span> -{" "}
+                              <span>{item.comment_count} Comment</span> -
+                              <span> {item.saved_count} Bookmark</span>
                             </p>
 
                             <div className="d-flex align-items-center">
@@ -153,7 +167,7 @@ const SearchRecipe = () => {
                                 </div>
                               </div>
                               <div className="d-flex flex-column ms-2">
-                                <h6 className="mb-0">matfaisall</h6>
+                                <h6 className="mb-0">{item?.author}</h6>
                               </div>
                             </div>
                           </Card>
@@ -171,13 +185,23 @@ const SearchRecipe = () => {
         <button
           className="btn px-4 text-white"
           style={{ backgroundColor: "#EFC81A" }}
+          onClick={() => setPage(page - 1)}
+          hidden={page <= 1}
         >
           Prev
         </button>
-        <h5 className="mb-0 mx-4">Show 1 - 5 From 20</h5>
+        <h5 className="mb-0 mx-4">
+          Show {data?.pagination?.totalData} - {data?.pagination?.pageNow} From{" "}
+          {data?.pagination?.totalPage}
+        </h5>
         <button
           className="btn px-4 text-white"
           style={{ backgroundColor: "#EFC81A" }}
+          onClick={() => setPage(page + 1)}
+          hidden={
+            page >=
+            (data?.pagination == undefined ? 3 : data?.pagination.totalPage)
+          }
         >
           Next
         </button>

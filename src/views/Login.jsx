@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import Swal from "sweetalert2";
+import RecipeLogo from "../assets/images/mamarecipe-logo.png";
 
 import { login } from "../redux/action/login";
 
@@ -12,7 +11,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -21,29 +19,6 @@ const Login = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(login(form, navigate));
-    // setLoading(true);
-
-    // const handleSuccess = (data) => {
-    //   localStorage.setItem("token", data.data.token);
-    //   localStorage.setItem("id", data.data.id);
-    //   console.log("data Login: ", data.data.token);
-    //   console.log("data Login id: ", data.data.id);
-    // };
-
-    // if (form.email === "" || form.password === "") {
-    //   alert("form harus diisi");
-    //   // bisa di costom ulang
-    // } else {
-    //   Swal.fire({
-    //     position: "top-end",
-    //     icon: "success",
-    //     title: "Login Success",
-    //     showConfirmButton: false,
-    //     timer: 1500,
-    //   });
-    //   dispatch(login(form, handleSuccess));
-    //   navigate("/");
-    // }
   };
 
   return (
@@ -52,7 +27,15 @@ const Login = () => {
         <Row>
           <Col md="4" className="mx-auto">
             <div className="text-center" style={{ color: "#EFC81A" }}>
-              <h4 className="mb-3 fw-bold">Recipe...</h4>
+              <div className="mb-2">
+                <Link to="/">
+                  <img
+                    src={RecipeLogo}
+                    alt="Logo Mama Recipe"
+                    style={{ width: 80 }}
+                  />
+                </Link>
+              </div>
               <h4 className="mb-3 fw-bold">Welcome</h4>
             </div>
             <p className="text-body-secondary text-center mb-4">
@@ -86,6 +69,7 @@ const Login = () => {
                     }
                     className="py-3 bg-body-tertiary"
                     placeholder="Password"
+                    autoComplete="on"
                   />
                 </Form.Group>
 

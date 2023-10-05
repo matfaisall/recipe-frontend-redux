@@ -16,8 +16,7 @@ import StyleLanding from "./styles/LandingPage.module.css";
 import imageHero from "../assets/images/menu-hero.jpg";
 
 const LandingPage = () => {
-  const token = localStorage.getItem("token");
-  console.log(token);
+  const token = localStorage?.getItem("token");
 
   const navbarDisplay = () => {
     if (token) {

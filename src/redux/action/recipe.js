@@ -10,24 +10,10 @@ export const getMenuDetail = (id) => async (dispatch) => {
   try {
     dispatch({ type: "DETAIL_MENU_PENDING" });
     const result = await axios.get(url + `/recipe/${id}`, { headers });
-    dispatch({ payload: result.data.data, type: "DETAIL_MENU_SUCCESS" });
+    dispatch({ payload: result.data, type: "DETAIL_MENU_SUCCESS" });
   } catch (err) {
     console.log("error");
     dispatch({ payload: err.response, type: "DETAIL_MENU_FAILED" });
-    console.log(err);
-  }
-};
-
-export const searchMenu = (data) => async (dispatch) => {
-  try {
-    dispatch({ type: "GET_MENU_PENDING" });
-    const result = await axios.get(url + `/recipe/searchdata?search=${data}`, {
-      headers,
-    });
-    dispatch({ payload: result.data.data, type: "GET_MENU_SUCCESS" });
-  } catch (err) {
-    console.log("error");
-    dispatch({ payload: err.response, type: "GET_MENU_FAILED" });
     console.log(err);
   }
 };
@@ -36,11 +22,39 @@ export const getMenu = () => async (dispatch) => {
   try {
     dispatch({ type: "GET_MENU_PENDING" });
     const result = await axios.get(url + `/recipe`, { headers });
-    dispatch({ payload: result.data.data, type: "GET_MENU_SUCCESS" });
+    dispatch({ payload: result.data, type: "GET_MENU_SUCCESS" });
   } catch (err) {
-    console.log("error");
     dispatch({ payload: err.response, type: "GET_MENU_FAILED" });
-    console.log(err);
+    Swal.fire({
+      position: "top-end",
+      icon: "error",
+      title: "Sorry, Please reload",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
+};
+
+export const searchMenu = (search, sort, page) => async (dispatch) => {
+  try {
+    dispatch({ type: "GET_MENU_PENDING" });
+    const result = await axios.get(
+      url +
+        `/recipe/searchdata?search=${search}&searchBy=title&limit=5&page=${page}&sortBy=${sort}`,
+      {
+        headers,
+      }
+    );
+    dispatch({ payload: result.data, type: "GET_MENU_SUCCESS" });
+  } catch (err) {
+    dispatch({ payload: err.response, type: "GET_MENU_FAILED" });
+    Swal.fire({
+      position: "top-end",
+      icon: "error",
+      title: "Sorry, Please reload",
+      showConfirmButton: false,
+      timer: 2500,
+    });
   }
 };
 

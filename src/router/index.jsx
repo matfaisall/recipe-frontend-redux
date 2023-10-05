@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-  Outlet,
-  useParams,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AuthChacker from "../components/AuthChacker/index.jsx";
 import LandingPage from "../views/LandingPage.jsx";
 import Login from "../views/Login.jsx";
@@ -19,17 +12,6 @@ import DetailRecipe from "../views/DetailRecipe.jsx";
 import NotFound from "../views/NotFound.jsx";
 
 const Router = () => {
-  const { menuId } = useParams();
-  // const PrivateRoute = () => {
-  //   const token = localStorage.getItem("token");
-  //   if (token) {
-  //     return <Outlet />;
-  //   } else {
-  //     alert("Anda harus login terlebih dahulu");
-  //     return <Navigate to="/" />;
-  //   }
-  // };
-
   return (
     <BrowserRouter>
       <Routes>
@@ -67,20 +49,19 @@ const Router = () => {
           path="/search-recipe"
           element={
             <AuthChacker>
-              {" "}
               <SearchRecipe />
             </AuthChacker>
           }
         />
         <Route
-          path="/detail-recipe/:menuId"
+          path="/detail-recipe/:id"
           element={
             <AuthChacker>
               <DetailRecipe />
             </AuthChacker>
           }
         />
-        <Route path="/*" element={<NotFound />} />
+        {/* <Route path="/*" element={<NotFound />} /> */}
       </Routes>
     </BrowserRouter>
   );

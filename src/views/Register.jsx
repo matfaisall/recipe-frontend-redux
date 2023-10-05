@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 
 import register from "../redux/action/register";
 
+import RecipeLogo from "../assets/images/mamarecipe-logo.png";
+
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,7 +30,15 @@ const Register = () => {
         <Row>
           <Col md="4" className="mx-auto">
             <div className="text-center" style={{ color: "#EFC81A" }}>
-              <h4 className="mb-3 fw-bold">Recipe...</h4>
+              <div className="mb-2">
+                <Link to="/">
+                  <img
+                    src={RecipeLogo}
+                    alt="Logo Mama Recipe"
+                    style={{ width: 80 }}
+                  />
+                </Link>
+              </div>
               <h4 className="mb-3 fw-bold">Let's Get Started !</h4>
             </div>
             <p className="text-body-secondary text-center mb-4">
@@ -73,6 +83,7 @@ const Register = () => {
                     }
                     className="py-3 bg-body-tertiary"
                     placeholder="Password"
+                    autoComplete="on"
                   />
                 </Form.Group>
 

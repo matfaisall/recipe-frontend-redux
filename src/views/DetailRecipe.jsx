@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Navbar from "../components/NavigationBar";
 import Footer from "../components/Footer";
@@ -6,12 +6,44 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 import imageAvatar from "../assets/images/avatar.jpg";
 import imageTest from "../assets/images/detail-menu1.jpg";
-
 import "boxicons";
+import { Link, useParams } from "react-router-dom";
 
-import { Link } from "react-router-dom";
+import { getMenuDetail } from "../redux/action/recipe";
+import { useDispatch, useSelector } from "react-redux";
 
 const DetailRecipe = () => {
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
+  const { data, isLoading } = useSelector((state) => state.detail_menuReducer);
+  console.log("ini data detail", data);
+  console.log("isloading ini", isLoading);
+
+  useEffect(() => {
+    dispatch(getMenuDetail(id));
+  }, []);
+
+  // creating current date
+  const currentDate = new Date();
+  let month = currentDate.getMonth();
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let monthName = months[month];
+  let dayOfMonth = currentDate.getDate();
+
   return (
     <>
       <Navbar />
@@ -29,24 +61,29 @@ const DetailRecipe = () => {
               </div>
             </div>
             <div className="d-flex flex-column ms-4">
-              <h6 className="mb-0">Matfaisall</h6>
-              <p className="mb-0 text-start fw-bold">10 Recipes</p>
+              <h6 className="mb-0">faisal</h6>
+              <p className="mb-0 text-start fw-bold">3 Recipes</p>
             </div>
           </div>
           <div className="d-flex flex-column text-end">
-            <p className="mb-0">August, 12</p>
+            <p className="mb-0">{`${monthName}, ${dayOfMonth}`}</p>
             <p className="mb-0">
-              20 Likes -<span> 2 Comments</span>
+              {data?.data.like_count} Likes -
+              <span> {data?.data.comment_count} Comments</span>
             </p>
           </div>
         </div>
 
         <main className="mt-5">
-          <h1 className="title text-center mb-5">American Shrimp Fried Rice</h1>
+          <h1 className="title text-center mb-5">{data?.data.title}</h1>
 
           <Row className="mb-5">
             <Col md="8" className="mx-auto" style={{ maxWidth: 800 }}>
-              <img src={imageTest} alt="" className="rounded d-block mx-auto" />
+              <img
+                src={data?.data.image}
+                alt=""
+                className="rounded d-block mx-auto"
+              />
               {/* <img className="rounded" src="../assets/images/detail-menu1.jpg" alt=""> */}
             </Col>
           </Row>
@@ -54,16 +91,9 @@ const DetailRecipe = () => {
           <div className="mb-5">
             <h4>Ingredients</h4>
             <ul>
-              <li>2 Egges</li>
-              <li>3 Tbsp Mayonnaise</li>
-              <li>3 Slices Bread</li>
-              <li>A Little Butter</li>
-              <li>1/3 Carton Of Cress</li>
-              <li>
-                2 - 3 Slices Of Tomato Or A Lettuce Leaf And A Slice of Ham Or
-                Cheese
-              </li>
-              <li>Risps, To Serve</li>
+              {data?.data.ingredients.split(",").map((item) => (
+                <li>{item}</li>
+              ))}
             </ul>
           </div>
 
