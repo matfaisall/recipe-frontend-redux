@@ -7,6 +7,9 @@
   background-repeat: no-repeat;
   background-size: cover !important;
   background-position: center !important;
+
+  background-attachment:fixed !important;
+  background-position:center !important;
 }
 
 input[type=file]:focus {

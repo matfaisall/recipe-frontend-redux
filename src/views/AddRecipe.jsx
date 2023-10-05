@@ -14,9 +14,11 @@ const AddRecipe = () => {
   const [inputData, setInputData] = useState({
     title: "",
     ingredients: "",
-    category_id: "1",
+    category_id: 0,
     image_url: "",
   });
+
+  console.log("ini add recipe", inputData);
 
   const postData = (event) => {
     event.preventDefault();
@@ -35,15 +37,14 @@ const AddRecipe = () => {
     // console.log(inputData);
   };
 
+  console.log("ini image", image);
   const onChangeImage = (e) => {
     setImage(e.target.files[0]);
-    // console.log(setImage(e.target.files[0]));
     e.target.files[0] &&
       setInputData({
         ...inputData,
-        photo_url: URL.createObjectURL(e.target.files[0]),
+        image_url: URL.createObjectURL(e.target.files[0]),
       });
-    console.log(e.target.files);
   };
 
   return (
@@ -59,7 +60,7 @@ const AddRecipe = () => {
                     <img
                       src={inputData.image_url}
                       alt="image"
-                      className="img-fluid w-100 d-block mx-auto upload-img"
+                      className="d-block mx-auto upload-img"
                     />
                   )}
 
@@ -103,7 +104,11 @@ const AddRecipe = () => {
                 </Form.Group>
                 <Row>
                   <Col md={4}>
-                    <Form.Select className="py-3 bg-body-tertiary">
+                    <Form.Select
+                      name="category_id"
+                      className="py-3 bg-body-tertiary"
+                      onChange={onChange}
+                    >
                       <option>Category</option>
                       <option value="1">Main Course</option>
                       <option value="2">Dessert</option>
