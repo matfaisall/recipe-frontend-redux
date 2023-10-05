@@ -7,21 +7,28 @@ import imageAvatar from "../assets/images/avatar.jpg";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { getMenu, deleteMenu } from "../redux/action/recipe";
+import { getMenuByUser, getMenu, deleteMenu } from "../redux/action/recipe";
 
 const ListRecipe = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const menu = useSelector((state) => state);
   const delete_menu = useSelector((state) => state);
-  const { data, errorMessage, isLoading, isError } = menu.menu;
-  // console.log(data);
+  // const { data, errorMessage, isLoading, isError } = menu.menu;
+
+  const { data, isLoading } = useSelector((state) => state.menu_userReducer);
+  console.log("ini data", data?.data.length);
+  const handlerDelete = () => [];
 
   useEffect(() => {
-    dispatch(getMenu());
+    // dispatch(getMenu());
+    dispatch(getMenuByUser());
   }, []);
 
   console.log(delete_menu);
+
+  // date config
+  const option = { month: "long", day: "2-digit" };
 
   return (
     <>
@@ -40,12 +47,16 @@ const ListRecipe = () => {
               </div>
             </div>
             <div className="d-flex flex-column ms-4">
-              <h6 className="mb-0">Matfaisall</h6>
-              <p className="mb-0 text-start fw-bold">10 Recipes</p>
+              <h6 className="mb-0">{localStorage?.getItem("name")}</h6>
+              <p className="mb-0 text-start fw-bold">
+                {data?.data.length} Recipes
+              </p>
             </div>
           </div>
           <div className="d-flex flex-column justify-content-center text-end">
-            <p className="mb-0">August, 12</p>
+            <p className="mb-0">
+              {new Date().toLocaleDateString("en-UK", option)}
+            </p>
           </div>
         </div>
 
@@ -76,7 +87,7 @@ const ListRecipe = () => {
         </div>
 
         <div className="my-4">
-          {data?.map((item, index) => {
+          {data?.data.map((item, index) => {
             return (
               <Row className="my-4" key={item.id}>
                 <Col md={7}>
@@ -98,8 +109,9 @@ const ListRecipe = () => {
                             variant="warning"
                             className="btn-sm text-white"
                           >
-                            <span>10 Likes</span> - <span>1 Comment</span> -{" "}
-                            <span>3 Bookmark</span>
+                            <span>{item.like_count} Likes</span> -{" "}
+                            <span>{item.comment_count} Comment</span> -{" "}
+                            <span>{item.saved_count} Bookmark</span>
                           </Button>
                           <div className="mt-3">
                             <Link to={`/edit-recipe/${item.id}`}>

@@ -6,6 +6,19 @@ const headers = {
   Authorization: `Bearer ${localStorage.getItem("token")}`,
 };
 
+export const getMenuByUser = () => async (dispatch) => {
+  try {
+    dispatch({ type: "USER_MENU_PENDING" });
+    const result = await axios.get(
+      url + `/recipe/filterdata?sortBy=title&sort=desc&page=1&limit=10`,
+      { headers }
+    );
+    dispatch({ type: "USER_MENU_SUCCESS", payload: result.data });
+  } catch (err) {
+    dispatch({ type: "USER_MENU_FAILED" });
+  }
+};
+
 export const getMenuDetail = (id) => async (dispatch) => {
   try {
     dispatch({ type: "DETAIL_MENU_PENDING" });
@@ -45,6 +58,7 @@ export const searchMenu = (search, sort, page) => async (dispatch) => {
         headers,
       }
     );
+
     dispatch({ payload: result.data, type: "GET_MENU_SUCCESS" });
   } catch (err) {
     dispatch({ payload: err.response, type: "GET_MENU_FAILED" });
@@ -119,7 +133,7 @@ export const deleteMenu = (id, navigate) => async (dispatch) => {
       }
     });
     const result = await axios.delete(url + `/recipe/${id}`, { headers });
-
+    window.location.reload();
     navigate("/list-recipe");
     dispatch({ payload: result.data.data, type: "DELETE_MENU_SUCCESS" });
   } catch (error) {
