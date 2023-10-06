@@ -29,6 +29,7 @@ export const login = (form, navigate) => async (dispatch) => {
       payload: result.data.data,
     });
     navigate("/");
+    window.location.reload();
   } catch (err) {
     console.log(err);
     dispatch({

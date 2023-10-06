@@ -12,11 +12,14 @@ import StyleAddRecipe from "./styles/AddRecipe.module.css";
 const EditRecipe = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const data = useSelector((state) => state.detail_menu);
+  const { data } = useSelector((state) => state.detail_menuReducer);
 
   const { menuId } = useParams();
   const [image, setImage] = useState(null);
 
+  console.log("ini data put", data?.data.title);
+
+  // new data input
   const [inputData, setInputData] = useState({
     title: "",
     ingredients: "",
@@ -24,28 +27,28 @@ const EditRecipe = () => {
     image_url: "",
   });
 
-  console.log("ini data", data);
-
-  console.log("ini inputdata", inputData);
-
   useEffect(() => {
-    console.log(menuId);
     dispatch(getMenuDetail(menuId));
-  });
+  }, []);
+
+  // console.log("ini data", data);
+  // console.log("ini inputdata", inputData);
 
   useEffect(() => {
     data &&
       setInputData(
         {
           ...inputData,
-          title: data.title,
-          image_url: data.image,
-          ingredients: data.ingredients,
-          category_id: data.category_id,
-        },
-        [data]
+          title: data?.data.title,
+          image_url: data?.data.image,
+          ingredients: data?.data.ingredients,
+          category_id: data?.data.category_id,
+        }
+        // [data]
       );
-  });
+  }, [data]);
+
+  console.log("ini input data", inputData);
 
   const postData = (event) => {
     event.preventDefault();
@@ -55,13 +58,12 @@ const EditRecipe = () => {
     bodyFormData.append("category_id", inputData.category_id);
     bodyFormData.append("image", image);
 
-    console.log(bodyFormData);
+    console.log("ini body form", bodyFormData);
     dispatch(updateMenu(bodyFormData, menuId, navigate));
   };
 
   const onChange = (e) => {
     setInputData({ ...inputData, [e.target.name]: e.target.value });
-    console.log(inputData);
   };
 
   const onChangePhoto = (e) => {
@@ -71,7 +73,6 @@ const EditRecipe = () => {
         ...inputData,
         image_url: URL.createObjectURL(e.target.files[0]),
       });
-    console.log(e.target.files);
   };
 
   return (
@@ -85,7 +86,8 @@ const EditRecipe = () => {
                 <Card className={`mb-4 ${StyleAddRecipe["image-card"]}`}>
                   {image && (
                     <img
-                      src={inputData.image_url}
+                      name="image"
+                      src={inputData.image_url || data?.data.image_url}
                       alt="image"
                       className="img-fluid w-100 d-block mx-auto upload-img"
                     />
@@ -103,6 +105,10 @@ const EditRecipe = () => {
                     </div>
                   </div>
                 </Card>
+                <p className="text-danger" style={{ fontSize: 12 }}>
+                  * <b>The image will be the same as it was before</b> if you do
+                  not insert a new one.
+                </p>
 
                 <Form.Group className="mb-3">
                   <Form.Control
@@ -131,7 +137,12 @@ const EditRecipe = () => {
                 </Form.Group>
                 <Row>
                   <Col md={4}>
-                    <Form.Select className="py-3 bg-body-tertiary">
+                    <Form.Select
+                      className="py-3 bg-body-tertiary"
+                      name="category_id"
+                      onChange={onChange}
+                      value={inputData.category_id}
+                    >
                       <option>Category</option>
                       <option value="1">Main Course</option>
                       <option value="2">Dessert</option>

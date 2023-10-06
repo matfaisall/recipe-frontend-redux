@@ -14,6 +14,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import StyleLanding from "./styles/LandingPage.module.css";
 
 import imageHero from "../assets/images/menu-hero.jpg";
+import imageHero01 from "../assets/images/popular-recipe2.jpg";
 
 const LandingPage = () => {
   const token = localStorage?.getItem("token");
@@ -46,14 +47,12 @@ const LandingPage = () => {
                 <Col md={10}>
                   {/* search input */}
                   <SearchBar />
-                  {/* <SearchResult result={result} /> */}
-                  {/* end search input */}
                 </Col>
               </Row>
             </Col>
             <Col md={6}>
               <img
-                src={imageHero}
+                src={imageHero01}
                 className="d-block mx-auto rounded mt-5 mt-md-0"
                 alt="Hero Image"
               />

@@ -12,20 +12,20 @@ import { getMenuByUser, getMenu, deleteMenu } from "../redux/action/recipe";
 const ListRecipe = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const menu = useSelector((state) => state);
-  const delete_menu = useSelector((state) => state);
+  // const menu = useSelector((state) => state);
+  // const delete_menu = useSelector((state) => state);
   // const { data, errorMessage, isLoading, isError } = menu.menu;
 
   const { data, isLoading } = useSelector((state) => state.menu_userReducer);
   console.log("ini data", data?.data.length);
-  const handlerDelete = () => [];
+  // const handlerDelete = () => [];
 
   useEffect(() => {
     // dispatch(getMenu());
     dispatch(getMenuByUser());
   }, []);
 
-  console.log(delete_menu);
+  // console.log(delete_menu);
 
   // date config
   const option = { month: "long", day: "2-digit" };
