@@ -102,7 +102,13 @@ const ListRecipe = () => {
                       </Col>
                       <Col md={7}>
                         <Card.Body>
-                          <Card.Title>{item.title}</Card.Title>
+                          <Link
+                            to={`/detail-recipe/${item.id}`}
+                            className="text-dark"
+                            style={{ textDecoration: "none" }}
+                          >
+                            <Card.Title>{item.title}</Card.Title>
+                          </Link>
                           <p className="mb-0">Ingredients</p>
                           <Card.Text>{item.ingredients}</Card.Text>
                           <Button
