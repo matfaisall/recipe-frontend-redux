@@ -3,18 +3,18 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/matfaisall/recipe-frontend-redux">
+  <a href="https://github.com/matfaisall/recipe-frontend-redux" target="_blank">
     <img src="https://res.cloudinary.com/dmx0spvee/image/upload/v1696560135/web-recipe-redux/mamarecipe-logo_ofcf8k.png" alt="Mama Recipe" width="150px">
   </a>
 
   <h3 align="center">Mama Recipe</h3>
 
   <p align="center">
-    <a href="https://recipe-frontend-redux.vercel.app/">Demo Web</a>
+    <a href="https://recipe-frontend-redux.vercel.app/" target="_blank">Demo Web</a>
     -
-    <a href="https://github.com/matfaisall/recipe-frontend-redux/issues">Report Bug</a>
+    <a href="https://github.com/matfaisall/recipe-frontend-redux/issues" target="_blank">Report Bug</a>
     -
-    <a href="https://github.com/matfaisall/recipe-frontend-redux/issues">Request Feature</a>
+    <a href="https://github.com/matfaisall/recipe-frontend-redux/issues" target="_blank">Request Feature</a>
   </p>
 </div>
 
@@ -111,7 +111,7 @@ VITE_BASE_URL=[URL_API]
 - Type `npm run dev` To Start the local web
 
 ## Try Our Web Application
-<a href="https://recipe-frontend-redux.vercel.app/">Launch to our App</a>
+<a href="https://recipe-frontend-redux.vercel.app/" target="_blank">Launch to our App</a>
 
 If you want to try our web application, you can use the following account :
 
@@ -227,7 +227,7 @@ Contributions are what make the open source community such an amazing place to b
   </tr>
   <tr>
     <td>
-      <a href="https://www.linkedin.com/in/matfaisall/">[LinkedIn Account]</a>
+      <a href="https://www.linkedin.com/in/matfaisall/" target="_blank">[LinkedIn Account]</a>
     </td>
   </tr>
 </table>
