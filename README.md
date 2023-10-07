@@ -10,7 +10,7 @@
   <h3 align="center">Mama Recipe</h3>
 
   <p align="center">
-    <a href="#">Demo Web</a>
+    <a href="https://recipe-frontend-redux.vercel.app/">Demo Web</a>
     -
     <a href="https://github.com/matfaisall/recipe-frontend-redux/issues">Report Bug</a>
     -
@@ -111,7 +111,7 @@ VITE_BASE_URL=[URL_API]
 - Type `npm run dev` To Start the local web
 
 ## Try Our Web Application
-<a href="#">Launch to our App</a>
+<a href="https://recipe-frontend-redux.vercel.app/">Launch to our App</a>
 
 If you want to try our web application, you can use the following account :
 
@@ -206,7 +206,7 @@ Contributions are what make the open source community such an amazing place to b
 
 :globe_with_meridians: [`Web Service`](https://alive-overshirt-bear.cyclic.app/)
 
-<!-- :computer: [`Demo Hire Job`](https://client-peworld.vercel.app/) -->
+:computer: [`Demo Hire Job`](https://recipe-frontend-redux.vercel.app/)
 
 
 ## Contact
