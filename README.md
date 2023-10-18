@@ -206,7 +206,7 @@ Contributions are what make the open source community such an amazing place to b
 
 :globe_with_meridians: [`Web Service`](https://alive-overshirt-bear.cyclic.app/)
 
-:computer: [`Demo Hire Job`](https://recipe-frontend-redux.vercel.app/)
+:computer: [`Demo Mama Recipe`](https://recipe-frontend-redux.vercel.app/)
 
 
 ## Contact
