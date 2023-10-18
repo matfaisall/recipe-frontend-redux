@@ -133,9 +133,10 @@ export const deleteMenu = (id, navigate) => async (dispatch) => {
     // .then((isConfirm) => {
     // });
     const result = await axios.delete(url + `/recipe/${id}`, { headers });
+    dispatch(getMenuByUser());
     dispatch({ payload: result.data.data, type: "DELETE_MENU_SUCCESS" });
-    window.location.reload();
-    navigate("/list-recipe");
+    // navigate("/list-recipe");
+    // window.location.reload();
   } catch (error) {
     dispatch({
       payload: err.response.data.message,
