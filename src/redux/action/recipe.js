@@ -119,23 +119,23 @@ export const deleteMenu = (id, navigate) => async (dispatch) => {
       type: "DELETE_MENU_PENDING",
     });
 
-    Swal.fire({
-      title: "Are you sure?",
-      text: "Do you really want to delete this recipe ?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
-      }
-    });
+    // Swal.fire({
+    //   title: "Are you sure?",
+    //   text: "Do you really want to delete this recipe ?",
+    //   icon: "warning",
+    //   showCancelButton: true,
+    //   confirmButtonText: "Yes, delete it!",
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+    //     Swal.fire("Deleted!", "Your file has been deleted.", "success");
+    //   }
+    // });
     // .then((isConfirm) => {
     // });
     const result = await axios.delete(url + `/recipe/${id}`, { headers });
+    dispatch({ payload: result.data.data, type: "DELETE_MENU_SUCCESS" });
     window.location.reload();
     navigate("/list-recipe");
-    dispatch({ payload: result.data.data, type: "DELETE_MENU_SUCCESS" });
   } catch (error) {
     dispatch({
       payload: err.response.data.message,
